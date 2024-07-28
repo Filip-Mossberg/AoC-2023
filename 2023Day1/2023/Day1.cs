@@ -13,8 +13,6 @@ namespace _2023Day1
             var data = File.ReadAllLines("C:\\Users\\Filip\\Desktop\\AOC-2023\\Day1.txt");
             var result = 0;
 
-            List<string> list = new List<string>();
-
             foreach (var line in data)
             {
                 string outPut = string.Concat(line.Where(Char.IsDigit));
