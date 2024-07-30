@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -11,7 +12,7 @@ namespace _2023Day1._2023
 {
     internal class Day2
     {
-        public void Run()
+        public void TaskA()
         {
             var data = File.ReadAllLines("C:\\Users\\Filip\\Desktop\\AOC-2023\\Day2.txt");
 
@@ -21,10 +22,42 @@ namespace _2023Day1._2023
             Console.WriteLine(result);
         }
 
+        public void TaskB()
+        {
+            var data = File.ReadAllLines("C:\\Users\\Filip\\Desktop\\AOC-2023\\Day2.txt");
+
+            string[] colors = new string[] { "red", "green", "blue" };
+
+            var sum = 0;
+
+            foreach (var line in data)
+            {
+                List<int> minumumCubeSet = new List<int>();
+
+                for (int i = 0; i < 3; i++)
+                {
+                    Regex rg = new Regex(@"\d+\s*" + colors[i]);
+
+                    var find = rg.Matches(line);
+                    List<int> colorNumber = new List<int>();
+
+                    for (int f = 0; f < find.Count; f++)
+                    {
+                        colorNumber.Add(int.Parse(Regex.Match(find[f].Value, @"\d+").ToString()));
+                    }
+
+                    minumumCubeSet.Add(colorNumber.Max());
+                }
+
+                sum += minumumCubeSet[0] * minumumCubeSet[1] * minumumCubeSet[2];
+            }
+
+            Console.WriteLine(sum);
+        }
+
         public List<Game> ModifyData(string[] data)
         {
             List<Game> games = new List<Game>();
-
 
             foreach (var line in data)
             {
@@ -33,7 +66,6 @@ namespace _2023Day1._2023
 
                 var splittedData = line.Split(":");
                 game.gameId = int.Parse(string.Concat(splittedData[0].Where(char.IsDigit)));
-
 
                 foreach (var set in splittedData[1].Split(";"))
                 {

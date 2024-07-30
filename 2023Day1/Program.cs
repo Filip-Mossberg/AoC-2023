@@ -6,8 +6,8 @@ namespace _2023Day1
     {
         static void Main(string[] args)
         {
-            Day3 day3 = new Day3();
-            day3.Run();
+            Day2 day2 = new Day2();
+            day2.TaskB();
         }
     }
 }
