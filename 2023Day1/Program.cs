@@ -7,7 +7,7 @@ namespace _2023Day1
         static void Main(string[] args)
         {
             Day4 day4 = new Day4();
-            day4.TaskA();
+            day4.TaskB();
         }
     }
 }
